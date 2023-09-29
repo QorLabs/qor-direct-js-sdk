@@ -33,6 +33,8 @@ export declare type PaymentCardManualInputParams = {
     meta_data?: object;
     /** Set `true` to store the card details in the QorCommerce Secure Vault.  The payment response return a card token */
     store_card?: boolean;
+    /** Set `true` to send the customer an email payment receipt.  If `true` you must provide a `customer.email` value.  Default is `false` */
+    send_rcpt?: boolean;
 }
 
 /**  Payment credit card detail. */
@@ -50,9 +52,11 @@ export declare type PaymentCardDetailObject = {
 }
 
 export declare type PaymentCustomerDetailObject = {
-    first_name: string;
+    /** Customer first name */
+    first_name?: string;
+    /** Customer last name */
     last_name: string;
-    company: string;
+    /** Customer email address */
     email: string;
     phone: string;
     website: string;
@@ -67,21 +71,6 @@ export declare type PaymentCardBillingAddressObject = {
     country_code?: string;
 }
 
-export declare type PaymentCardHostParams = {
-    card_detail: PaymentCardDetailObject,
-    billing: PaymentCardBillingAddressObject,
-    customer: PaymentCustomerDetailObject,
-    tid?: string,
-    topt?: string,
-    reference_id?: string,
-    service_charge?: string,
-    currency?: string,
-    invoice_id?: string,
-    ip_address?: string,
-    risk_score?: string,
-    meta_data?: object,
-    store_card?: boolean
-}
 
 export declare type PaymentCardResponse = {
 }

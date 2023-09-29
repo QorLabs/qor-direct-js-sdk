@@ -7,7 +7,6 @@ import {
     validateCreditCardExpiration,
 } from "../utils";
 import {
-    PaymentCardHostParams,
     PaymentCardManualInputParams,   
     PaymentCardDetailObject,   
     PaymentCustomerDetailObject,   
@@ -41,6 +40,10 @@ processManualCardSale(card: PaymentCardManualInputParams): Promise<PaymentCardRe
     if ((brand === 'American Express' && card_detail?.cvv.toString().length !== 4) ||
         (card_detail?.cvv.toString().length !== 3)) {
         throw new Error('Invalid card validation number (cvv)');
+    }
+
+    if (card.send_rcpt && !customer?.email) {
+        throw new Error('You must provide a customer email address to send a payment receipt')
     }
 
     return this.request(`/${cardManualResource}`, {
