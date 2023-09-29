@@ -2,7 +2,7 @@ import { Base } from "../base";
 import { 
     MarketplaceTransactionResponse,
     MarketplaceMerchantResponse,
-    MarketplaceMerchant
+    MarketplaceMerchantParameters
 } from "./types";
 
 const mktrxresource = "payment/transactions/mp/batch";
@@ -23,14 +23,13 @@ export class Marketplace extends Base {
     /**
      * Creates a new marketplace merchant account.
      *
-     * @param {MarketplaceMerchant} merchant - The merchant object containing the details of the merchant.
+     * @param {MarketplaceMerchantParameters} merchant - The merchant object containing the details of the merchant.
      * @return {Promise<MarketplaceMerchantResponse>} - A promise that resolves to the response of the API call.
      */
-    createMarketplaceMerchantAccount(merchant: MarketplaceMerchant): Promise<MarketplaceMerchantResponse> {
+    createMarketplaceMerchantAccount(merchant: MarketplaceMerchantParameters): Promise<MarketplaceMerchantResponse> {
         return this.request(`/${mktNewMerchant}`, {
             method: 'POST',
-            body: JSON.stringify(merchant),
+            body: JSON.stringify({data: merchant}),
           });
     }
-
 }

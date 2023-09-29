@@ -1,6 +1,6 @@
 import { Base } from "../base";
-import { MarketplaceTransactionResponse, MarketplaceMerchantResponse, MarketplaceMerchant } from "./types";
+import { MarketplaceTransactionResponse, MarketplaceMerchantResponse, MarketplaceMerchantParameters } from "./types";
 export declare class Marketplace extends Base {
     fetchMarketplaceTransactionByBatchId(batch_id: string): Promise<MarketplaceTransactionResponse>;
-    createMarketplaceMerchantAccount(merchant: MarketplaceMerchant): Promise<MarketplaceMerchantResponse>;
+    createMarketplaceMerchantAccount(merchant: MarketplaceMerchantParameters): Promise<MarketplaceMerchantResponse>;
 }

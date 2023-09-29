@@ -60,7 +60,6 @@ export class ProofOfDelivery extends Base {
         });
     }
 
-
     /**
      * Deletes a proof of delivery by its ID.
      *
