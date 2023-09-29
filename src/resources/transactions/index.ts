@@ -1,12 +1,15 @@
 import { Base } from "../base";
 import { 
+    PaymentTransactionFetchResponse,
+    CardTransactionListResponse, 
     CardTransactionQueryParams,
-    CardTransactionQueryResponse, 
     AchTransactionQueryParams,
     AchTransactionQueryResponse
 } from "./types";
 
-const cardResource = "/payment/transactions";
+const paymentList = "/payment/transactions";
+const paymentFetch = "/payment/transaction";
+
 const achResource = "/ach/transactions";
 
 
@@ -16,39 +19,46 @@ export class Transactions extends Base {
      * Fetches a transaction by its ID.
      *
      * @param {string} trxn_id - The ID of the transaction.
-     * @return {Promise<CardTransactionQueryResponse>} A promise that resolves to the transaction.
+     * @return {Promise<PaymentTransactionFetchResponse>} A promise that resolves to the transaction result.
      */
-    fetchCardTransactionById(trxn_id: string): Promise<CardTransactionQueryResponse> {
-        return this.request(`${cardResource}/${trxn_id}`);
+    async fetchPaymentTransactionById(trxn_id: string): Promise<PaymentTransactionFetchResponse[]> {
+        const response: { data: PaymentTransactionFetchResponse[] } = await this.request(`${paymentFetch}/${trxn_id}`);
+        const transformedData: PaymentTransactionFetchResponse[] = response.data.map(obj => {
+            return Object.entries(obj).reduce((acc, [key, value]) => {
+            acc[key] = value;
+            return acc;
+            }, {} as PaymentTransactionFetchResponse);
+        });
+        return transformedData;
     }
 
     /**
      * Retrieves a list of transactions.  The maximum number of transactions returned per API call is 250. If you require more than 250 use the 'limit' and 'offset' parameters
      *
-     * @return {Promise<CardTransactionQueryResponse[]>} A promise that resolves to an array of transactions.
+     * @return {Promise<CardTransactionListResponse>} A promise that resolves to an array of transaction objects.
      */
-    listCardTransactions(queryParams?: CardTransactionQueryParams): Promise<CardTransactionQueryResponse[]> {
-        return this.request<CardTransactionQueryResponse[]>(`${cardResource}`, queryParams);
+    listCardTransactions(queryParams?: CardTransactionQueryParams): Promise<CardTransactionListResponse> {
+        return this.request<CardTransactionListResponse>(`${paymentList}`, queryParams);
     }
 
     /**
      * Retrieves a list of transactions by the customer profile ID.
      *
      * @param {string} profile_id - The ID of the profile.
-     * @return {Promise<CardTransactionQueryResponse[]>} A promise that resolves to an array of transactions.
+     * @return {Promise<PaymentTransactionFetchResponse>} A promise that resolves to an array of transactions.
      */
-    listCardTransactionsByProfileId(profile_id: string): Promise<CardTransactionQueryResponse[]> {
-        return this.request(`${cardResource}/${profile_id}`);
+    listCardTransactionsByProfileId(profile_id: string): Promise<PaymentTransactionFetchResponse> {
+        return this.request(`${paymentList}/${profile_id}`);
     }
 
     /**
      * Retrieves a list of transactions by the customer transaction batch ID.
      *
      * @param {string} batch_id - The ID of the batch.
-     * @return {Promise<CardTransactionQueryResponse[]>} A promise that resolves to an array of transactions.
+     * @return {Promise<PaymentTransactionFetchResponse>} A promise that resolves to an array of transactions.
      */
-    listCardTransactionsByBatchId(batch_id: string): Promise<CardTransactionQueryResponse[]> {
-        return this.request(`${cardResource}`);
+    listCardTransactionsByBatchId(batch_id: string): Promise<PaymentTransactionFetchResponse> {
+        return this.request(`${paymentList}`);
     }
 
     /**
@@ -67,7 +77,7 @@ export class Transactions extends Base {
      * @return {Promise<AchTransactionQueryResponse[]>} A promise that resolves to an array of transactions.
      */
     listAchTransactions(queryParams?: AchTransactionQueryParams): Promise<AchTransactionQueryResponse[]> {
-        return this.request<AchTransactionQueryResponse[]>(`${cardResource}`, queryParams);
+        return this.request<AchTransactionQueryResponse[]>(`${paymentList}`, queryParams);
     }
 
 

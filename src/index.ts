@@ -1,10 +1,13 @@
 import { Transactions } from './resources/transactions/index';
 import { Marketplace } from './resources/marketplace/index';
+import { ProofOfDelivery } from './resources/proof-of-delivery/index';
+
 
 
 export class QorDirectSDK {
     transactions: Transactions
     marketplace: Marketplace
+    proofOfDelivery: ProofOfDelivery
 
     /**
      * Creates a new instance of the constructor.
@@ -39,6 +42,7 @@ export class QorDirectSDK {
     }) {
         this.transactions = new Transactions(config);
         this.marketplace = new Marketplace(config);
+        this.proofOfDelivery = new ProofOfDelivery(config);
       }
 }
 
