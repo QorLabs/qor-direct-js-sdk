@@ -1,7 +1,7 @@
 import { Transactions } from './resources/transactions/index';
 import { Marketplace } from './resources/marketplace/index';
 import { ProofOfDelivery } from './resources/proof-of-delivery/index';
-import { Payments } from './resources/payment/index';
+import { Payments } from './resources/payments/index';
 
 
 export class QorDirectSDK {
