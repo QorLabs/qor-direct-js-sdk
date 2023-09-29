@@ -1,7 +1,7 @@
 import { Base } from "../base";
 import { 
     PaymentTransactionFetchResponse,
-    CardTransactionListResponse, 
+    PaymentTransactionListResponse, 
     CardTransactionQueryParams,
     AchTransactionQueryParams,
     AchTransactionQueryResponse
@@ -9,6 +9,10 @@ import {
 
 const paymentList = "/payment/transactions";
 const paymentFetch = "/payment/transaction";
+const paymentProfileList = "/payment/transactions/profile";
+const paymentBatchList = "/payment/transactions/batch";
+
+
 
 const achResource = "/ach/transactions";
 
@@ -20,6 +24,19 @@ export class Transactions extends Base {
      *
      * @param {string} trxn_id - The ID of the transaction.
      * @return {Promise<PaymentTransactionFetchResponse>} A promise that resolves to the transaction result.
+     * 
+     * @example
+     * ```js
+     * import { QorDirectSDK } from "qor-direct-sdk"
+     * 
+     * const client = new QorDirectSDK({
+     *   apiKey: 'YOUR_API_KEY',
+     *   clientKey: 'YOUR_CLIENT_KEY',
+     * });
+     * 
+     * client.transactions.fetchPaymentTransactionById("326881109961722").then((a) => console.log(a))
+     * ```
+     * 
      */
     async fetchPaymentTransactionById(trxn_id: string): Promise<PaymentTransactionFetchResponse> {
         const response: PaymentTransactionFetchResponse = await this.request(`${paymentFetch}/${trxn_id}`);
@@ -34,30 +51,32 @@ export class Transactions extends Base {
     /**
      * Retrieves a list of transactions.  The maximum number of transactions returned per API call is 250. If you require more than 250 use the 'limit' and 'offset' parameters
      *
-     * @return {Promise<CardTransactionListResponse>} A promise that resolves to an array of transaction objects.
+     * @return {Promise<PaymentTransactionListResponse>} A promise that resolves to an array of transaction objects.
      */
-    listCardTransactions(queryParams?: CardTransactionQueryParams): Promise<CardTransactionListResponse> {
-        return this.request<CardTransactionListResponse>(`${paymentList}`, queryParams);
+    listPaymentTransactions(queryParams?: CardTransactionQueryParams): Promise<PaymentTransactionListResponse> {
+        return this.request<PaymentTransactionListResponse>(`${paymentList}`, queryParams);
     }
 
+
     /**
-     * Retrieves a list of transactions by the customer profile ID.
+     * Retrieves a list of payment transactions by profile ID.
      *
      * @param {string} profile_id - The ID of the profile.
-     * @return {Promise<PaymentTransactionFetchResponse>} A promise that resolves to an array of transactions.
+     * @return {Promise<PaymentTransactionListResponse>} A promise that resolves to the payment transaction list response.
      */
-    listCardTransactionsByProfileId(profile_id: string): Promise<PaymentTransactionFetchResponse> {
-        return this.request(`${paymentList}/${profile_id}`);
+    listPaymentTransactionsByProfileId(profile_id: string): Promise<PaymentTransactionListResponse> {
+        return this.request(`${paymentProfileList}/${profile_id}`);
     }
 
+
     /**
-     * Retrieves a list of transactions by the customer transaction batch ID.
+     * Retrieves a list of payment transactions by batch ID.
      *
-     * @param {string} batch_id - The ID of the batch.
-     * @return {Promise<PaymentTransactionFetchResponse>} A promise that resolves to an array of transactions.
+     * @param {string} batch_id - The ID of the batch to retrieve payment transactions for.
+     * @return {Promise<PaymentTransactionListResponse>} - A promise that resolves to a response object containing the list of payment transactions.
      */
-    listCardTransactionsByBatchId(batch_id: string): Promise<PaymentTransactionFetchResponse> {
-        return this.request(`${paymentList}`);
+    listPaymentTransactionsByBatchId(batch_id: string): Promise<PaymentTransactionListResponse> {
+        return this.request(`${paymentBatchList}/${batch_id}`);
     }
 
     /**

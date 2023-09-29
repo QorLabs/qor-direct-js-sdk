@@ -1,56 +1,8 @@
-type PaymentTransactionDataObject = {
+export type PaymentTransactionResultObject = {
+    trxn_id: string;
     trxn_status: string;
     trxn_date: string;
     trxn_type: string;
-    trxn_id: string;
-    payment_type: string;
-    card_type: string;
-    amount: string;
-    invoice_id: string | null;
-    order_id: string;
-    authcode: string;
-    avs_code: string;
-    cv_code: string;
-    last_4: string;
-    settled: string;
-    settled_amount: string | null;
-    settled_date: string | null;
-};
-export declare type PaymentTransactionFetchResponse = {
-    status: string;
-    code: string;
-    message: string;
-    data: PaymentTransactionDataObject;
-};
-export declare type _PaymentTransactionFetchResponse = {
-    status: string;
-    code: string;
-    message: string;
-    data: {
-        trxn_id: string;
-        trxn_status: string;
-        trxn_date: string;
-        trxn_type: string;
-        cardholder_name: string;
-        payment_type: string;
-        card_type: string;
-        amount: string;
-        invoice_id: string;
-        order_id: string;
-        authcode: string;
-        avs_code: string;
-        cv_code: string;
-        last_4: string;
-        settled: string;
-        settled_date: string;
-        settled_amount: string;
-    };
-};
-export declare type CardTransactionListResponse = {
-    trxn_status: string;
-    trxn_date: string;
-    trxn_type: string;
-    trxn_id: string;
     cardholder_name: string;
     payment_type: string;
     card_type: string;
@@ -64,6 +16,23 @@ export declare type CardTransactionListResponse = {
     settled: string;
     settled_date: string;
     settled_amount: string;
+};
+export type PaymentTransactionFetchResponse = {
+    status: string;
+    code: string;
+    message: string;
+    data: PaymentTransactionResultObject;
+};
+export type PaymentTransactionListResponse = {
+    status: string;
+    code: string;
+    message: string;
+    data: {
+        count: number;
+        limit: number;
+        offset: number;
+        transactions: PaymentTransactionResultObject[];
+    };
 };
 export declare type CardTransactionQueryParams = {
     transaction_id?: string;
@@ -117,4 +86,3 @@ export declare type AchTransactionQueryResponse = {
     settled_date: string;
     settled_amount: string;
 };
-export {};

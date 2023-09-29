@@ -1,120 +1,85 @@
-
-type PaymentTransactionDataObject = {
-    trxn_status: string;
-    trxn_date: string;
-    trxn_type: string;
-    trxn_id: string;
-    payment_type: string;
-    card_type: string;
-    amount: string;
-    invoice_id: string | null;
-    order_id: string;
-    authcode: string;
-    avs_code: string;
-    cv_code: string;
-    last_4: string;
-    settled: string;
-    settled_amount: string | null;
-    settled_date: string | null;
+/**
+ * Represents a payment transaction result object.
+ *
+ * @typedef {Object} PaymentTransactionResultObject
+ * @property {string} trxn_id - ID of the transaction.
+ * @property {string} trxn_status - Status of the transaction. Values are 'approved' or 'declined'.
+ * @property {string} trxn_date - Date and time transaction was processed. Example: '09-26-2023 06:31 PM'.
+ * @property {string} trxn_type - Type of transaction processed. Values are 'sale', 'authorize', 'capture', 'void' and 'refund'.
+ * @property {string} cardholder_name - Cardholder name as it appears on the card.
+ * @property {string} payment_type - Type of payment. Values are 'cc' (Credit Card) and 'ach' (ACH/Bank).
+ * @property {string} card_type - Card brand. Values are 'visa', 'mastercard', 'amex', 'discover', 'jcb', diners'.
+ * @property {string} amount - Amount processed.
+ * @property {string} invoice_id - ID of the invoice (if provided in the payment request).
+ * @property {string} order_id - ID of the order.
+ * @property {string} authcode - Host processor authorization code.
+ * @property {string} avs_code - Address verification service code (if enabled).
+ * @property {string} cv_code - Card verification code (if enabled).
+ * @property {string} last_4 - Last 4 digits of the card number processed.
+ * @property {string} settled - '0' = transaction not settled. '1' = transaction has been settled.
+ * @property {string} settled_date - Transaction settlement date.
+ * @property {string} settled_amount - Transaction settlement amount.
+ */
+export type PaymentTransactionResultObject = {
+        trxn_id: string,
+        trxn_status: string,
+        trxn_date: string,
+        trxn_type: string,
+        cardholder_name: string,
+        payment_type: string,
+        card_type: string,
+        amount: string,
+        invoice_id: string,
+        order_id: string,
+        authcode: string,
+        avs_code: string,
+        cv_code: string,
+        last_4: string,
+        settled: string,
+        settled_date: string,
+        settled_amount: string,
 };
-      
-export declare type PaymentTransactionFetchResponse = {
-    status: string;
-    code: string;
-    message: string;
-    data: PaymentTransactionDataObject;
-};
-
-
-
-
-
 
 /**
- * Represents a card transaction response object.
+ * Represents the payment transaction fetch response.
+ *
+ * @typedef {Object} PaymentTransactionFetchResponse
+ * @property {string} status - The status of the transaction. Possible response values are 'ok' and 'error'.
+ * @property {string} code - The payment gateway response code. See [Payment Response Codes](https://docs.qorcommerce.io/docs/payment-response-codes) for code descriptions.
+ * @property {string} message - Message associated with the response code.
+ * @property {PaymentTransactionResultObject} data - The fetched payment transaction object.
  */
-export declare type _PaymentTransactionFetchResponse = {
-     /** The status of the transaction.  Possible response values are 'ok' and 'error' */
-     status: string
-     /** The payment gateway response code.  See [Payment Response Codes](https://docs.qorcommerce.io/docs/payment-response-codes) for code descriptions. */
-     code: string,
-     /** Message associated with the response code.*/
-     message: string,
-     /** The query result object. */
-     data: {
-        /** ID of the transaction */
-        trxn_id: string,
-        /** Status of the transaction.  Values are 'approved' or 'declined' */
-        trxn_status: string,
-        /** Date and time transaction was processsed.  Example: '09-26-2023 06:31 PM' */
-        trxn_date: string,
-        /** Type of transaction processed.  Values are 'sale', 'authorize', 'capture', 'void' and 'refund' */
-        trxn_type: string,
-        /** Cardholer name as it appears on card */
-        cardholder_name: string,
-        /** Type of payment.  Values are 'cc' (Credit Card) and 'ach' (ACH/Bank). */
-        payment_type: string,
-        /** Card brand.  Values are 'visa', 'mastercard', 'amex', 'discover', 'jcb', diners'. */
-        card_type: string,
-        /** Amount processed */
-        amount: string,
-        /** ID of invoice (if provided in payment request). */
-        invoice_id: string,
-        /** ID of the order. */
-        order_id: string,
-        /** Host processor authorization code. */
-        authcode: string,
-        /** Address verification service code (if enabled). */
-        avs_code: string,
-        /** Card verification code (if enabled). */
-        cv_code: string,
-        /** Last 4 digits of the card number processed. */
-        last_4: string,
-        /** '0' = transaction not settled. '1' = transaction has been settled */
-        settled: string,
-        /** Transaction settlement date */
-        settled_date: string,
-        /** Transaction settlement amount */
-        settled_amount: string,
-     };
-}
+export type PaymentTransactionFetchResponse = {
+    status: string
+    code: string,
+    message: string,
+    data: PaymentTransactionResultObject;
+};
 
-export declare type CardTransactionListResponse = {
-    /** Status of the transaction.  Values are 'approved' or 'declined' */
-    trxn_status: string,
-    /** Date and time transaction was processsed.  Example: '09-26-2023 06:31 PM' */
-    trxn_date: string,
-    /** Type of transaction processed.  Values are 'sale', 'authorize', 'capture', 'void' and 'refund' */
-    trxn_type: string,
-    /** ID of the transaction */
-    trxn_id: string,
-    /** Cardholer name as it appears on card */
-    cardholder_name: string,
-    /** Type of payment.  Values are 'cc' (Credit Card) and 'ach' (ACH/Bank). */
-    payment_type: string,
-    /** Card brand.  Values are 'visa', 'mastercard', 'amex', 'discover', 'jcb', diners'. */
-    card_type: string,
-    /** Amount processed */
-    amount: string,
-    /** ID of invoice (if provided in payment request). */
-    invoice_id: string,
-    /** ID of the order. */
-    order_id: string,
-    /** Host processor authorization code. */
-    authcode: string,
-    /** Address verification service code (if enabled). */
-    avs_code: string,
-    /** Card verification code (if enabled). */
-    cv_code: string,
-    /** Last 4 digits of the card number processed. */
-    last_4: string,
-    /** '0' = transaction not settled. '1' = transaction has been settled */
-    settled: string,
-    /** Transaction settlement date */
-    settled_date: string,
-    /** Transaction settlement amount */
-    settled_amount: string,
-}
+/**
+ * Represents the payment transactions list response.
+ *
+ * @typedef {Object} PaymentTransactionListResponse
+ * @property {string} status - The status of the transaction. Possible response values are 'ok' and 'error'.
+ * @property {string} code - The payment gateway response code. See [Payment Response Codes](https://docs.qorcommerce.io/docs/payment-response-codes) for code descriptions.
+ * @property {string} message - Message associated with the response code.
+ * @property {object} data - Payment transaction results object.
+ * @property {number} data.count - Total number of transactions matching the query.
+ * @property {number} data.limit - Total number of transactions returned.
+ * @property {number} data.offset - Total number of transactions skipped.
+ * @property {PaymentTransactionResultObject[]} data.transactions - Array of fetched payment transaction objects that match the query.
+ */
+export type PaymentTransactionListResponse = {
+    status: string,
+    code: string,
+    message: string,
+    data: {
+        count: number,
+        limit: number,
+        offset: number,
+        transactions: PaymentTransactionResultObject[]
+    }
+};
 
 /**
  * Represents card transaction list query parameters.
