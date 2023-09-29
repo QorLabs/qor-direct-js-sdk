@@ -8,5 +8,5 @@
         "./src/resources/marketplace/index.ts",
         "./src/resources/marketplace/types.ts"
     ],
-    "out": "docs"
+    "out": "../docs/js-sdk"
 }

@@ -1,6 +1,14 @@
 # QorCommerce Direct SDK
 
-## Javascript SDK for Qorcommerce Payment Gateway.  For more details see `https://docs.qorcommerce.io`
+### SDK API Documentation
+```js
+https://qorlabs.github.io/js-sdk/index.html
+```
+
+### QorCommerce Developer Documentation
+```js
+https://docs.qorcommerce.io
+```
 
 ### NPM Registry
 ```js
