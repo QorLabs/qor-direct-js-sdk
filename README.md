@@ -1,4 +1,5 @@
-# QorCommerce Direct Javascript SDK
+# [QorCommerce Direct Javascript SDK](https://github.com/QorLabs/qor-direct-js-sdk)
+ES5 and ES6 compatible javascript SDK with types to interact with Qorcommerce Payment Gateway 
 
 ### [SDK API Documentation](https://qorlabs.github.io/js-sdk/index.html)
 ```js
