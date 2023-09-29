@@ -61,6 +61,12 @@ export class ProofOfDelivery extends Base {
     }
 
 
+    /**
+     * Deletes a proof of delivery by its ID.
+     *
+     * @param {string} id - The ID of the proof of delivery to delete.
+     * @return {Promise<ProofOfDeliveryDeleteResponse>} A Promise that resolves to the delete response.
+     */
     deleteProofOfDelivery(id: string): Promise<ProofOfDeliveryDeleteResponse> {
         return this.request(`/${podResource}/${id}`, {
             method: 'DELETE',

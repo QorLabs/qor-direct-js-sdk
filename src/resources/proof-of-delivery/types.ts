@@ -1,6 +1,6 @@
 /**
  * Represents a proof of delivery record list query response.
- */
+*/
 export declare type ProofOfDeliveryListResponse = {
     /** The status of the transaction.  Possible response values are 'ok' and 'error' */
     status: string
@@ -29,7 +29,7 @@ export declare type ProofOfDeliveryListResponse = {
 
 /**
  * Represents proof of delivery record list query parameters.
- */
+*/
 export declare type ProofOfDeliveryQueryParams = {
     /** The Proof of Delivery / Tracking unique identifier. Begins with pofs- */
     pofs_id?: string;
@@ -43,6 +43,9 @@ export declare type ProofOfDeliveryQueryParams = {
     delivery_date: string;
 }
 
+/**
+ * Represents a new proof of delivery record parameters.
+*/
 export declare type ProofOfDeliveryCreateParams = {
     /** The unique transaction identifier associated with the Proof of Delivery / Tracking */
     trxn_id: string;
@@ -56,7 +59,7 @@ export declare type ProofOfDeliveryCreateParams = {
 
 /**
  * Represents a new proof of delivery record response.
- */
+*/
 export declare type ProofOfDeliveryCreateResponse = {
     /** The status of the transaction.  Possible response values are 'ok' and 'error' */
     status: string

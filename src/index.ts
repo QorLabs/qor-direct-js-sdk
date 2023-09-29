@@ -3,7 +3,6 @@ import { Marketplace } from './resources/marketplace/index';
 import { ProofOfDelivery } from './resources/proof-of-delivery/index';
 
 
-
 export class QorDirectSDK {
     transactions: Transactions
     marketplace: Marketplace
