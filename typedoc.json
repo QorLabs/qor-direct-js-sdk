@@ -1,0 +1,12 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": [
+        "./src/index.ts", 
+        "./src/resources/base.ts", 
+        "./src/resources/transactions/index.ts",
+        "./src/resources/transactions/types.ts",
+        "./src/resources/marketplace/index.ts",
+        "./src/resources/marketplace/types.ts"
+    ],
+    "out": "docs"
+}
