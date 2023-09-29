@@ -18,14 +18,29 @@ export abstract class Base {
    * Constructor function for the Config class.
    *
    * @param {Config} config - The configuration options for the class.
+   * 
+   * @example
+   * ```js
+   * import { QorDirectSDK } from "qor-direct-sdk";
+   * 
+   * const client = new QorDirectSDK({
+   *   apiKey: "YOUR_API_KEY",
+   *   clientKey: "YOUR_CLIENT_KEY",
+   *   requestId: "YOUR_REQUEST_ID",
+   *   baseUrl: "https://api.qorcommerce.io/v3"
+   * });
+   * ```
    */
   constructor(config: Config) {
-    this.apiKey = config.apiKey;  // The application API key for authentication.
-    this.clientKey = config.clientKey;  // The merchant client key for authentication.
-    this.requestId = config.requestId || genRandomString(12);  // Optional request ID to track requests.  If not provided a random 12-character string will be generated
-    this.baseUrl = config.baseUrl || 'https://api-sandbox.qorcommerce.io/v3';  // Production URL.  Defaults to sandbox 'https://api-sandbox.qorcommerce.io/v3'.
+    /** The application API key for authentication */
+    this.apiKey = config.apiKey;
+    /** The merchant client key for authentication */
+    this.clientKey = config.clientKey;
+    /** Optional.  A unique identifier to track transaction.  Defaults to a random generated string value. */
+    this.requestId = config.requestId || genRandomString(12);
+    /** The base URL to use when ready for production.  Defaults to sandbox api https://api-sandbox.qorcommerce.io/v3 */
+    this.baseUrl = config.baseUrl || 'https://api-sandbox.qorcommerce.io/v3';
   }
-
 
   /**
    * Sends an HTTP request to the specified endpoint with optional query parameters and request options.
