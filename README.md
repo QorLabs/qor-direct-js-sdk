@@ -9,7 +9,7 @@ https://unpkg.com/qor-direct-sdk@3.0.3/dist/index.umd.js
 
 ### UMD
 ```js
-unpkg.com/:qor-direct-sdk@:latest/:index.umd.js
+https://unpkg.com/qor-direct-sdk@3.0.3/dist/index.umd.js
 ```
 
 ### ES6 Example:
