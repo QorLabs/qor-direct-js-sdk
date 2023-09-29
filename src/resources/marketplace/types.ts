@@ -1,5 +1,5 @@
 /**
- * Represents a card transaction response.
+ * Represents a marketplace transaction response.
  */
 export declare type MarketplaceTransactionResponse = {
     /** Status of the transaction.  Values are 'approved' or 'declined' */
@@ -39,9 +39,8 @@ export declare type MarketplaceTransactionResponse = {
 }
 
 /**  
- * Add / Enroll a new MarketPlace Merchant to portfolio
+ * Add / Enroll a MarketPlace Merchant to portfolio
 */
-
 export declare type MarketplaceMerchant = {
     /** Merchant wrapped in a data object  */
     data: {
@@ -141,6 +140,10 @@ export declare type MarketplaceMerchant = {
         }[];
     };
 };
+
+/** 
+ * Add / Enroll a MarketPlace Merchant response
+*/
 
 export declare type MarketplaceMerchantResponse = {
     /** The status of the transaction.  Possible response values are 'ok' and 'error' */
