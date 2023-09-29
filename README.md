@@ -32,12 +32,14 @@ const client = new QorDirectSDK({
     baseUrl: 'https://api.qorcommerce.io/v3'  // <- use when ready for production.  defaults to sandbox api
   });
 
-  client.transactions.listTransactions().then((a) => console.log(a))
+  client.transactions.listTransactions({
+    card_type: "visa"
+  }).then((a) => console.log(a))
 ```
 
 ### CommonJS Example:
 ```js
-const QorDirectSDK require('qor-direct-sdk')
+const { QorDirectSDK } require('qor-direct-sdk')
 
 const client = new QorDirectSDK({
     apiKey: 'YOUR_API_KEY',
@@ -46,6 +48,8 @@ const client = new QorDirectSDK({
     baseUrl: 'https://api.qorcommerce.io/v3'  // <- use when ready for production.  defaults to sandbox api
   });
 
-  client.transactions.listTransactions().then((a) => console.log(a))
+  client.transactions.listTransactions({
+    card_type: "visa"
+  }).then((a) => console.log(a))
 ```
 

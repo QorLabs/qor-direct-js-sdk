@@ -19,17 +19,6 @@ export abstract class Base {
    *
    * @param {Config} config - The configuration options for the class.
    * 
-   * @example
-   * ```js
-   * import { QorDirectSDK } from "qor-direct-sdk";
-   * 
-   * const client = new QorDirectSDK({
-   *   apiKey: "YOUR_API_KEY",
-   *   clientKey: "YOUR_CLIENT_KEY",
-   *   requestId: "YOUR_REQUEST_ID",
-   *   baseUrl: "https://api.qorcommerce.io/v3"
-   * });
-   * ```
    */
   constructor(config: Config) {
     /** The application API key for authentication */
