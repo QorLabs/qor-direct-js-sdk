@@ -1,7 +1,39 @@
+
+type PaymentTransactionDataObject = {
+    trxn_status: string;
+    trxn_date: string;
+    trxn_type: string;
+    trxn_id: string;
+    payment_type: string;
+    card_type: string;
+    amount: string;
+    invoice_id: string | null;
+    order_id: string;
+    authcode: string;
+    avs_code: string;
+    cv_code: string;
+    last_4: string;
+    settled: string;
+    settled_amount: string | null;
+    settled_date: string | null;
+};
+      
+export declare type PaymentTransactionFetchResponse = {
+    status: string;
+    code: string;
+    message: string;
+    data: PaymentTransactionDataObject;
+};
+
+
+
+
+
+
 /**
  * Represents a card transaction response object.
  */
-export declare type PaymentTransactionFetchResponse = {
+export declare type _PaymentTransactionFetchResponse = {
      /** The status of the transaction.  Possible response values are 'ok' and 'error' */
      status: string
      /** The payment gateway response code.  See [Payment Response Codes](https://docs.qorcommerce.io/docs/payment-response-codes) for code descriptions. */
