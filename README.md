@@ -1,16 +1,16 @@
 # QorCommerce Direct SDK
 
-### SDK API Documentation
+### [SDK API Documentation](https://qorlabs.github.io/js-sdk/index.html)
 ```js
 https://qorlabs.github.io/js-sdk/index.html
 ```
 
-### QorCommerce Developer Documentation
+### [QorCommerce Developer Documentation](https://docs.qorcommerce.io)
 ```js
 https://docs.qorcommerce.io
 ```
 
-### NPM Registry
+### [NPM Registry](https://www.npmjs.com/package/qor-direct-sdk)
 ```js
 https://www.npmjs.com/package/qor-direct-sdk
 ```
