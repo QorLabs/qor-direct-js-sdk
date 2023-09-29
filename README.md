@@ -4,7 +4,7 @@
 
 ### NPM Registry
 ```js
-https://unpkg.com/qor-direct-sdk@3.0.3/dist/index.umd.js
+https://www.npmjs.com/package/qor-direct-sdk
 ```
 
 ### UMD
