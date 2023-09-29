@@ -1,4 +1,4 @@
-# QorCommerce Direct SDK
+# QorCommerce Direct Javascript SDK
 
 ### [SDK API Documentation](https://qorlabs.github.io/js-sdk/index.html)
 ```js
