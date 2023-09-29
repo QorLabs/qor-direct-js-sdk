@@ -23,12 +23,15 @@ export class Transactions extends Base {
      */
     async fetchPaymentTransactionById(trxn_id: string): Promise<PaymentTransactionFetchResponse[]> {
         const response: { data: PaymentTransactionFetchResponse[] } = await this.request(`${paymentFetch}/${trxn_id}`);
+        console.log("RESPONSE", response.data);
         const transformedData: PaymentTransactionFetchResponse[] = response.data.map(obj => {
             return Object.entries(obj).reduce((acc, [key, value]) => {
             acc[key] = value;
             return acc;
             }, {} as PaymentTransactionFetchResponse);
         });
+        console.log("transformedData", transformedData);
+
         return transformedData;
     }
 

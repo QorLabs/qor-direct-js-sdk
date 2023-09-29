@@ -20,7 +20,7 @@ export declare type PaymentTransactionFetchResponse = {
         settled: string;
         settled_date: string;
         settled_amount: string;
-    }[];
+    };
 };
 export declare type CardTransactionListResponse = {
     trxn_status: string;

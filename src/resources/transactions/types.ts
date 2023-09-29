@@ -44,7 +44,7 @@ export declare type PaymentTransactionFetchResponse = {
         settled_date: string,
         /** Transaction settlement amount */
         settled_amount: string,
-     }[];
+     };
 }
 
 export declare type CardTransactionListResponse = {
