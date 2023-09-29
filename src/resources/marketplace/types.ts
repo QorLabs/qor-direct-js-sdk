@@ -144,7 +144,6 @@ export declare type MarketplaceMerchant = {
 /** 
  * Add / Enroll a MarketPlace Merchant response
 */
-
 export declare type MarketplaceMerchantResponse = {
     /** The status of the transaction.  Possible response values are 'ok' and 'error' */
     status: string

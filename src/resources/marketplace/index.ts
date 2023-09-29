@@ -26,6 +26,7 @@ export class Marketplace extends Base {
      * @param {MarketplaceMerchant} merchant - The merchant object containing the details of the merchant.
      * @return {Promise<MarketplaceMerchantResponse>} - A promise that resolves to the response of the API call.
      */
+    
     createMarketplaceMerchantAccount(merchant: MarketplaceMerchant): Promise<MarketplaceMerchantResponse> {
         return this.request(`/${mktNewMerchant}`, {
             method: 'POST',
