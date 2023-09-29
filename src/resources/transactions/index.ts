@@ -23,11 +23,13 @@ export class Transactions extends Base {
      */
     async fetchPaymentTransactionById(trxn_id: string): Promise<PaymentTransactionFetchResponse> {
         const response: PaymentTransactionFetchResponse = await this.request(`${paymentFetch}/${trxn_id}`);
-        const transformedData: PaymentTransactionFetchResponse = response;
-        return transformedData;
+        return {
+            status: response.status,
+            code: response.code,
+            message: response.message,
+            data: response.data[0]
+        };
     }
-
-
 
     /**
      * Retrieves a list of transactions.  The maximum number of transactions returned per API call is 250. If you require more than 250 use the 'limit' and 'offset' parameters
