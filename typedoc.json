@@ -3,12 +3,15 @@
     "entryPoints": [
         "./src/index.ts", 
         "./src/resources/base.ts", 
+        "./src/resources/payments/index.ts",
+        "./src/resources/payments/types.ts",
         "./src/resources/transactions/index.ts",
         "./src/resources/transactions/types.ts",
         "./src/resources/marketplace/index.ts",
         "./src/resources/marketplace/types.ts",
         "./src/resources/proof-of-delivery/index.ts",
-        "./src/resources/proof-of-delivery/types.ts"
+        "./src/resources/proof-of-delivery/types.ts",
+        "./src/resources/utils.ts"
     ],
     "out": "../docs/js-sdk"
 }

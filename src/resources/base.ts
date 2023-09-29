@@ -14,22 +14,17 @@ export abstract class Base {
   private requestId: string;
   private baseUrl: string;
 
-  /**
-   * Constructor function for the Config class.
-   *
-   * @param {Config} config - The configuration options for the class.
-   * 
-   */
-  constructor(config: Config) {
-    /** The application API key for authentication */
-    this.apiKey = config.apiKey;
-    /** The merchant client key for authentication */
-    this.clientKey = config.clientKey;
-    /** Optional.  A unique identifier to track transaction.  Defaults to a random generated string value. */
-    this.requestId = config.requestId || genRandomString(12);
-    /** The base URL to use when ready for production.  Defaults to sandbox api https://api-sandbox.qorcommerce.io/v3 */
-    this.baseUrl = config.baseUrl || 'https://api-sandbox.qorcommerce.io/v3';
-  }
+/**
+ * Constructor function for the Config class.
+ *
+ * @param {Config} config - The configuration options for the class.
+ */
+constructor(config: Config) {
+  this.apiKey = config.apiKey;
+  this.clientKey = config.clientKey;
+  this.requestId = (config.requestId ?? genRandomString(12)) as string;
+  this.baseUrl = config.baseUrl ?? 'https://api-sandbox.qorcommerce.io/v3';
+}
 
   /**
    * Sends an HTTP request to the specified endpoint with optional query parameters and request options.
