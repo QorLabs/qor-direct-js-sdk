@@ -12,10 +12,7 @@ const paymentFetch = "/payment/transaction";
 const paymentProfileList = "/payment/transactions/profile";
 const paymentBatchList = "/payment/transactions/batch";
 
-
-
 const achResource = "/ach/transactions";
-
 
 export class Transactions extends Base {
 
@@ -57,7 +54,6 @@ export class Transactions extends Base {
         return this.request<PaymentTransactionListResponse>(`${paymentList}`, queryParams);
     }
 
-
     /**
      * Retrieves a list of payment transactions by profile ID.
      *
@@ -67,7 +63,6 @@ export class Transactions extends Base {
     listPaymentTransactionsByProfileId(profile_id: string): Promise<PaymentTransactionListResponse> {
         return this.request(`${paymentProfileList}/${profile_id}`);
     }
-
 
     /**
      * Retrieves a list of payment transactions by batch ID.
@@ -82,22 +77,20 @@ export class Transactions extends Base {
     /**
      * Fetches an ACH transaction by its ID.
      *
-     * @param {string} transaction_id - The ID of the ACH transaction.
-     * @return {Promise<AchTransactionQueryResponse>} A promise that resolves to the transaction.
+     * @param {string} transaction_id - The ID of the transaction to fetch.
+     * @return {Promise<AchTransactionQueryResponse>} - A promise that resolves to the query response of the ACH transaction.
      */
     fetchAchTransactionById(transaction_id: string): Promise<AchTransactionQueryResponse> {
         return this.request(`${achResource}/${transaction_id}`);
     }
 
     /**
-     * Retrieves a list of ACH transactions.  The maximum number of transactions returned per API call is 250. If you require more than 250 use the 'limit' and 'offset' parameters
+     * Queries the list of ACH transactions with optional query parameters.
      *
-     * @return {Promise<AchTransactionQueryResponse[]>} A promise that resolves to an array of transactions.
+     * @param {AchTransactionQueryParams} [queryParams] - Optional query parameters to filter the list of transactions.
+     * @return {Promise<AchTransactionQueryResponse[]>} - A promise that resolves to an array of ACH transaction query responses.
      */
     listAchTransactions(queryParams?: AchTransactionQueryParams): Promise<AchTransactionQueryResponse[]> {
         return this.request<AchTransactionQueryResponse[]>(`${paymentList}`, queryParams);
     }
-
-
-
 }

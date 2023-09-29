@@ -148,7 +148,6 @@ export declare type AchTransactionQueryParams = {
 /**
  * Represents an ACH transaction response object.
  */
-
 export declare type AchTransactionQueryResponse = {
         /** Status of the transaction.  Values are 'approved' or 'declined' */
         trxn_status: string,

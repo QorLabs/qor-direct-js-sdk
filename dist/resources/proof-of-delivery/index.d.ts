@@ -1,5 +1,9 @@
 import { Base } from "../base";
-import { ProofOfDeliveryListResponse, ProofOfDeliveryListParams } from "./types";
+import { ProofOfDeliveryListResponse, ProofOfDeliveryQueryParams, ProofOfDeliveryCreateParams, ProofOfDeliveryCreateResponse, ProofOfDeliveryUpdateParams, ProofOfDeliveryUpdateResponse, ProofOfDeliveryDeleteResponse } from "./types";
 export declare class ProofOfDelivery extends Base {
-    listCardTransactions(queryParams?: ProofOfDeliveryListParams): Promise<ProofOfDeliveryListResponse>;
+    listProofOfDelivery(queryParams?: ProofOfDeliveryQueryParams): Promise<ProofOfDeliveryListResponse>;
+    fetchProofOfDeliveryById(id: string): Promise<ProofOfDeliveryListResponse>;
+    createProofOfDelivery(pofs: ProofOfDeliveryCreateParams): Promise<ProofOfDeliveryCreateResponse>;
+    patchProofOfDelivery(pofs: ProofOfDeliveryUpdateParams): Promise<ProofOfDeliveryUpdateResponse>;
+    deleteProofOfDelivery(id: string): Promise<ProofOfDeliveryDeleteResponse>;
 }
