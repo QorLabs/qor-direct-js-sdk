@@ -1,11 +1,13 @@
 {
   "name": "qor-direct-sdk",
-  "version": "3.0.2",
-  "description": "",
+  "version": "3.0.3",
+  "description": "Javascript SDK for Qorcommerce.io payment gateway.  See https://docs.qorcommerce.io/ for more information.",
   "main": "dist/index.js",
   "module": "dist/index.m.js",
   "unpkg": "dist/index.umd.js",
   "types": "dist/index.d.ts",
+  "github": "https://github.com/QorLabs/qor-direct-js-sdk.git",
+  "bugs": "https://github.com/QorLabs/qor-direct-js-sdk/issues",
   "scripts": {
     "build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
     "docs": "typedoc --options typedoc.json",
