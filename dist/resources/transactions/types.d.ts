@@ -34,7 +34,7 @@ export type PaymentTransactionListResponse = {
         transactions: PaymentTransactionResultObject[];
     };
 };
-export declare type CardTransactionQueryParams = {
+export declare type PaymentTransactionQueryParams = {
     transaction_id?: string;
     trxn_status: string;
     start_date: string;

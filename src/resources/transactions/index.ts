@@ -2,7 +2,7 @@ import { Base } from "../base";
 import { 
     PaymentTransactionFetchResponse,
     PaymentTransactionListResponse, 
-    CardTransactionQueryParams,
+    PaymentTransactionQueryParams,
     AchTransactionQueryParams,
     AchTransactionQueryResponse
 } from "./types";
@@ -53,7 +53,7 @@ export class Transactions extends Base {
      *
      * @return {Promise<PaymentTransactionListResponse>} A promise that resolves to an array of transaction objects.
      */
-    listPaymentTransactions(queryParams?: CardTransactionQueryParams): Promise<PaymentTransactionListResponse> {
+    listPaymentTransactions(queryParams?: PaymentTransactionQueryParams): Promise<PaymentTransactionListResponse> {
         return this.request<PaymentTransactionListResponse>(`${paymentList}`, queryParams);
     }
 
