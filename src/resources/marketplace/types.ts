@@ -42,7 +42,6 @@ export declare type MarketplaceTransactionResponse = {
  * Add / Enroll a MarketPlace Merchant to portfolio
 */
 export declare type MarketplaceMerchant = {
-    /** Merchant wrapped in a data object  */
     data: {
         /** The name under which the merchant is doing business */
         descriptor: string;
@@ -52,7 +51,6 @@ export declare type MarketplaceMerchant = {
         avgTicket?: number;
         /** The Merchant Category Code for the merchant.  Contact service provider for proper code */
         mcc?: string;
-        /** Merchant detail object  */
         merchant: {
             /** Merchant type.  Accepted values are 0 for Sole Proprietor, 1 for Corporation, 2 for Limited Liability Company, 3 for Partnership, 5 for Non-Profit Organization and 6 for Government Organization */
             type: number;
@@ -83,7 +81,6 @@ export declare type MarketplaceMerchant = {
             /** Timestamp when terms and conditions were signed by seller/merchant.  Use unix timestamp (number of seconds since January 1, 1970). */
             tcDate: string | number;
         };
-        /** List (array) of bank accounts associated with the merchant.  Ensure at least one primary account is provided.  */
         bank_accounts: {
             /** Bank account information */
             account: {
@@ -99,7 +96,6 @@ export declare type MarketplaceMerchant = {
             /** Set 1 if this is the primary bank account.  Set 0 if not.  */
             primary: number;
         }[];
-        /** List (array) of owners associated with the merchant.  Ensure to provide at least 1 primary owner with more than 50% ownership */
         owners: {
             /** Title/role of the owner.  Example 'President' */
             title: string;
