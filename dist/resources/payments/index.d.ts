@@ -1,5 +1,5 @@
 import { Base } from "../base";
-import { PaymentCardManualInputParams, PaymentCardResponse } from "./types";
+import { PaymentCardRequest, PaymentCardResponse } from "../../types/payments";
 export declare class Payments extends Base {
-    processManualCardSale(card: PaymentCardManualInputParams): Promise<PaymentCardResponse>;
+    processCreditCard(card: PaymentCardRequest): Promise<PaymentCardResponse>;
 }

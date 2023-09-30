@@ -1,4 +1,4 @@
-import { PaymentCardObject } from "../resources/payments/types";
+import { PaymentCardObject } from "../types/payments";
 
 /**
  * Generates a random string with the specified length.

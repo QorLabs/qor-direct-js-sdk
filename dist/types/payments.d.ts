@@ -53,7 +53,7 @@ export declare type PaymentCard3dsObject = {
     ECIFlag: string;
     XID: string;
 };
-export declare type PaymentCardManualInputParams = {
+export declare type PaymentCardRequest = {
     type: "string";
     mid: string;
     total_amount: string;

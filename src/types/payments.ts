@@ -7,7 +7,7 @@ export declare type PaymentShippingObject = {
   /** Shipping destnation street 1 address */
   country_code: string;
 };
-/** Payment order items object. */
+/** Payment sale order items object. */
 export declare type PaymentItemsObject = {
   /** The total amount of the item which should equal (((unit_price * units_sold) + taxes + fees) - discounts) */
   total_amount: string;
@@ -89,7 +89,7 @@ export declare type PaymentCustomerObject = {
   /** Customer website */
   website?: string;
 };
-/** Payment 3-D Secure object. */
+/** Payment credit card 3-D Secure object. */
 export declare type PaymentCard3dsObject = {
   /** Status response from 3-D Secure provider. Possible values are typically success, failure, noaction or error but can vary depending on provider */
   response: string;
@@ -105,8 +105,9 @@ export declare type PaymentCard3dsObject = {
   XID: string;
 };
 
-/**  Parameters to process a manually entered credit/debit card. */
-export declare type PaymentCardManualInputParams = {
+
+/**  Parameters to process a credit card sale or authorization. */
+export declare type PaymentCardRequest = {
   /** Set processing type.  Accepted values are 'sale' and 'authorize'*/
   type: "string";
   /** The merchant account id assigned by the service provider that will process the payment */
@@ -156,8 +157,7 @@ export declare type PaymentCardManualInputParams = {
   /** Set `true` to send the customer an email payment receipt.  If `true` you must provide a `customer.email` value.  Default is `false`.  */
   send_receipt?: boolean;
 };
-
-/** Response object for manual payment card processing */
+/** Response object for credit card sale and authorization */
 export declare type PaymentCardResponse = {
   /** The status of the transaction. Possible response values are 'approved', 'declined' and 'error'. */
   status: string;

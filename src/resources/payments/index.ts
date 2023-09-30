@@ -6,16 +6,16 @@ import {
 
 } from "../utils";
 import {
-    PaymentCardManualInputParams,   
+    PaymentCardRequest,   
     PaymentCardResponse,
-} from "./types";
+} from "../../types/payments";
 
 const cardManualCardSaleResource = "payment/sale/manual";
 const cardManualCardAuthResource = "payment/sale/authorize";
 
 export class Payments extends Base {
 
-    async processManualCardSale(card: PaymentCardManualInputParams): Promise<PaymentCardResponse> {
+    async processCreditCard(card: PaymentCardRequest): Promise<PaymentCardResponse> {
         
         const { token_detail, card_detail, track_detail, customer_detail, discount_detail, items_detail, shipping_detail, three_ds, ...rest } = card;
 
@@ -28,15 +28,15 @@ export class Payments extends Base {
             (Object.keys(card_detail) && Object.keys(token_detail)) ||
             (Object.keys(card_detail) && Object.keys(track_detail)) ||
             (Object.keys(token_detail) && Object.keys(track_detail))
-          ) throw new Error("You must provide only one of 'card_detail', 'token_detail', or 'track_detail' objects with required values to process a payment");
+            ) throw new Error("You must provide only one of 'card_detail', 'token_detail', or 'track_detail' objects with required values to process a payment");
         
-
         // validate card_detail
         if (Object.keys(card_detail)) await validateCard(card_detail).catch((e) => { throw new Error(e);});
         if (card_detail?.store_card && !customer_detail?.email) throw new Error("You must provide a 'customer_detail.email' address to store a card token")
 
         // validate token_detail
         if (Object.keys(token_detail) && !token_detail.token) throw new Error("You must provide a 'token_detail.token' value");
+        if (Object.keys(token_detail) && !token_detail.cvv) throw new Error("You must provide a 'token_detail.cvv' value");
 
         // validate customer email for send receipt
         if (card.send_receipt && !customer_detail?.email) throw new Error("You must provide a 'customer_detail.email' value to send a payment receipt")

@@ -1,4 +1,4 @@
-import { PaymentCardObject } from "../resources/payments/types";
+import { PaymentCardObject } from "../types/payments";
 export declare function genRandomString(length: number): string;
 export declare function validateCard(card_detail: PaymentCardObject): Promise<true | Error>;
 export declare function getIPAddress(): Promise<string>;
