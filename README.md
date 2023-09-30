@@ -18,7 +18,7 @@ https://www.npmjs.com/package/qor-direct-sdk
 
 ### UMD
 ```js
-https://unpkg.com/qor-direct-sdk@3.0.3/dist/index.umd.js
+https://unpkg.com/qor-direct-sdk@latest/dist/index.umd.js
 ```
 
 ### ES6 Example:

@@ -89,3 +89,36 @@ export declare type PaymentCardResponse = {
     authcode: string;
     token: string;
 };
+export declare type PaymentCardVoid = {
+    mid: string;
+    transaction_id: string;
+    reference_id?: string;
+};
+export declare type PaymentCardVoidResponse = {
+    status: string;
+    code: string;
+    message: string;
+};
+export declare type PaymentCardRefund = {
+    mid: string;
+    transaction_id: string;
+    amount?: string;
+    reference_id?: string;
+};
+export declare type PaymentCardRefundResponse = {
+    status: string;
+    code: string;
+    message: string;
+};
+export declare type PaymentCardAuthorizeCapture = {
+    mid: string;
+    transaction_id: string;
+    orderid?: string;
+    amount?: string;
+    reference_id?: string;
+};
+export declare type PaymentCardAuthorizeCaptureResponse = {
+    status: string;
+    code: string;
+    message: string;
+};
