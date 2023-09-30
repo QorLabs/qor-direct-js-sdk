@@ -1,12 +1,11 @@
-
-
+import { PaymentCardObject } from "../resources/payments/types";
 
 /**
  * Generates a random string with the specified length.
  *
  * @param {number} length - The length of the random string to generate.
  */
-export async function genRandomString(length: number) {
+export function genRandomString(length: number) {
     let result = '';
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let charactersLength = characters.length;
@@ -16,6 +15,56 @@ export async function genRandomString(length: number) {
     return result;
 }
 
+/**
+ * Validates the provided card details.
+ *
+ * @param {PaymentCardObject} card_detail - The card details to be validated.
+ * @return {boolean | Error} - Returns true if the card details are valid, otherwise returns an Error object.
+ */
+export async function validateCard(card_detail: PaymentCardObject) {
+  if (!card_detail.number) {
+    return new Error("A 'card_detail.number' value is required");
+  }
+
+  if (!card_detail.exp_month) {
+    return new Error("A 'card_detail.exp_month' value is required");
+  }
+
+  if (!card_detail.exp_year) {
+    return new Error("A 'card_detail.exp_year' value is required");
+  }
+
+  if (!card_detail.cvv) {
+    return new Error("A 'card_detail.cvv' value is required");
+  }
+
+  if (!validateCreditCardNumber(card_detail.number)) {
+    return new Error("Invalid 'card_detail.number' value");
+  }
+
+  if (!validateCreditCardExpiration(card_detail.exp_month, card_detail.exp_year)) {
+    return new Error("Invalid 'card_detail.exp_month' or 'card_detail.exp_year' value");
+  }
+
+  const brand = getCardBrand(card_detail.number);
+
+  if (!brand) {
+    return new Error("Invalid or not supported credit card brand");
+  }
+
+  if (
+    (brand === 'American Express' && card_detail.cvv.toString().length !== 4) ||
+    card_detail.cvv.toString().length !== 3
+  ) {
+    return new Error("Invalid 'card_detail.cvv' value");
+  }
+
+  if (card_detail.store_card && !card_detail.nickname) {
+    throw new Error("You must provide 'card_detail.nickname' to store a card token");
+  }
+
+  return true;
+}
 
 /**
  * Retrieves the IP address using the ipify API.
@@ -35,13 +84,6 @@ export async function getIPAddress(): Promise<string> {
       });
 }
 
-/**
- * Validates the expiration date of a credit card.
- *
- * @param {number} month - The month of the expiration date.
- * @param {number} year - The year of the expiration date. (Cannot be more than 10 years in the future)
- * @return {boolean} Returns true if the expiration date is valid, otherwise returns false.
- */
 /**
  * Validates the expiration date of a credit card.
  *

@@ -1,55 +1,85 @@
-export declare type PaymentCardTrackDetailObject = {
-    track: string;
-    ksn: number;
-};
-export declare type PaymentDiscountDetailObject = {
+export declare type PaymentShippingObject = {
     amount: string;
-    percent: number;
+    postal_code: string;
+    country_code: string;
 };
-export declare type PaymentCardDetailObject = {
+export declare type PaymentItemsObject = {
+    total_amount: string;
+    name: string;
+    description?: string;
+    unit_price: string;
+    units_sold: string;
+    unit_measurement: string;
+    ucc: string;
+    upc: string;
+};
+export declare type PaymentCardObject = {
     number: string;
     cardholder: string;
     exp_month: number;
     exp_year: number;
     cvv: number;
-};
-export declare type PaymentCustomerDetailObject = {
-    first_name?: string;
-    last_name?: string;
-    email?: string;
-    phone?: string;
-    website?: string;
-};
-export declare type PaymentCardBillingAddressObject = {
     postal_code: string;
     street_1?: string;
     street_2?: string;
     city?: string;
     state_code?: string;
     country_code?: string;
+    store_card?: boolean;
+    nickname: string;
+};
+export declare type PaymentCardTrackObject = {
+    track: string;
+    ksn: number;
+};
+export declare type PaymentCardTokenObject = {
+    token: string;
+    cvv: number;
+};
+export declare type PaymentDiscountObject = {
+    amount: string;
+    percent: number;
+};
+export declare type PaymentCustomerObject = {
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    phone?: string;
+    website?: string;
+};
+export declare type PaymentCard3dsObject = {
+    response: string;
+    CAVV: string;
+    ECIFlag: string;
+    XID: string;
 };
 export declare type PaymentCardManualInputParams = {
     type: "string";
     mid: string;
-    amount: string;
+    total_amount: string;
+    total_tax_amount?: string;
+    reference_id?: string;
     order_id: string;
-    card_detail: PaymentCardDetailObject;
-    billing: PaymentCardBillingAddressObject;
-    customer: PaymentCustomerDetailObject;
-    discount: PaymentDiscountDetailObject;
+    invoice_id?: string;
+    purchase_order?: string;
+    token_detail?: PaymentCardTokenObject;
+    card_detail?: PaymentCardObject;
+    track_detail: PaymentCardTrackObject;
+    customer_detail?: PaymentCustomerObject;
+    discount_detail?: PaymentDiscountObject;
+    items_detail?: PaymentItemsObject;
+    shipping_detail?: PaymentShippingObject;
+    three_ds?: PaymentCard3dsObject;
     terminal_id?: string;
     topt?: string;
-    reference_id?: string;
     service_charge?: string;
     currency?: string;
-    invoice_id?: string;
     ip_address?: string;
     risk_score?: string;
     meta_data?: object;
-    store_card?: boolean;
     send_receipt?: boolean;
 };
-export declare type PaymentCardManualInputResponse = {
+export declare type PaymentCardResponse = {
     status: string;
     code: string;
     message: string;
@@ -58,61 +88,4 @@ export declare type PaymentCardManualInputResponse = {
     amount_approved: string;
     authcode: string;
     token: string;
-};
-export declare type PaymentCardTokenInputParams = {
-    type: "string";
-    mid: string;
-    amount: string;
-    token: string;
-    cvv: string;
-    order_id: string;
-    terminal_id?: string;
-    topt?: string;
-    reference_id?: string;
-    service_charge?: string;
-    discount?: PaymentDiscountDetailObject;
-    currency?: string;
-    invoice_id?: string;
-    ip_address?: string;
-    risk_score?: string;
-    meta_data?: object;
-    send_receipt?: boolean;
-};
-export declare type PaymentCardTokenResponse = {
-    status: string;
-    code: string;
-    message: string;
-    transaction_date: string;
-    transaction_id: string;
-    amount_approved: string;
-    authcode: string;
-};
-export declare type PaymentCardSwipeInputParams = {
-    type: "string";
-    mid: string;
-    amount: string;
-    track_data: PaymentCardTrackDetailObject;
-    order_id: string;
-    customer: PaymentCustomerDetailObject;
-    terminal_id?: string;
-    topt?: string;
-    reference_id?: string;
-    service_charge?: string;
-    discount?: PaymentDiscountDetailObject;
-    currency?: string;
-    invoice_id?: string;
-    ip_address?: string;
-    risk_score?: string;
-    meta_data?: object;
-    store_card: boolean;
-    send_receipt?: boolean;
-};
-export declare type PaymentCardSwipeResponse = {
-    status: string;
-    code: string;
-    message: string;
-    transaction_date: string;
-    transaction_id: string;
-    amount_approved: string;
-    authcode: string;
 };
