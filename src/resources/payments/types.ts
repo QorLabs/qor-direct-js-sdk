@@ -60,6 +60,8 @@ export declare type PaymentCardBillingAddressObject = {
 
 /**  Parameters to process a manually entered credit/debit card. */
 export declare type PaymentCardManualInputParams = {
+  /** Set processing type.  Accepted values are 'sale' and 'authorize'*/
+  type: "string";
   /** The merchant account id assigned by the service provider that will process the payment */
   mid: string;
   /** Amount to process.  Use numbers for dollar amount and up to 2 decimal places for cents.  Example $100.00 could be 100 or 100.00 */
@@ -97,7 +99,7 @@ export declare type PaymentCardManualInputParams = {
   /** Set `true` to send the customer an email payment receipt.  If `true` you must provide a `customer.email` value.  Default is `false` */
   send_receipt?: boolean;
 };
-
+/** Response object for manual payment card processing */
 export declare type PaymentCardManualInputResponse = {
   /** The status of the transaction. Possible response values are 'approved', 'declined' and 'error'. */
   status: string;
@@ -119,6 +121,8 @@ export declare type PaymentCardManualInputResponse = {
 
 /**  Parameters to process a manually entered credit/debit card token. */
 export declare type PaymentCardTokenInputParams = {
+  /** Set processing type.  Accepted values are 'sale' and 'authorize'*/
+  type: "string";
   /** The merchant account id assigned by the service provider that will process the payment */
   mid: string;
   /** Amount to process.  Use numbers for dollar amount and up to 2 decimal places for cents.  Example $100.00 could be 100 or 100.00 */
@@ -152,7 +156,6 @@ export declare type PaymentCardTokenInputParams = {
   /** Set `true` to send the customer an email payment receipt.  Default is `false` */
   send_receipt?: boolean;
 };
-
 /** Response object for payment card token processing */
 export declare type PaymentCardTokenResponse = {
   /** The status of the transaction. Possible response values are 'approved', 'declined' and 'error'. */
@@ -173,6 +176,8 @@ export declare type PaymentCardTokenResponse = {
 
 /**  Parameters to process a card present swipe transaction. */
 export declare type PaymentCardSwipeInputParams = {
+  /** Set processing type.  Accepted values are 'sale' and 'authorize'*/
+  type: "string";
   /** The merchant account id assigned by the service provider that will process the payment */
   mid: string;
   /** Amount to process.  Use numbers for dollar amount and up to 2 decimal places for cents.  Example $100.00 could be 100 or 100.00 */
@@ -208,7 +213,6 @@ export declare type PaymentCardSwipeInputParams = {
   /** Set `true` to send the customer an email payment receipt.  Default is `false` */
   send_receipt?: boolean;
 };
-
 /** Response object for payment card present processing */
 export declare type PaymentCardSwipeResponse = {
   /** The status of the transaction. Possible response values are 'approved', 'declined' and 'error'. */
@@ -226,3 +230,4 @@ export declare type PaymentCardSwipeResponse = {
   /** The host authorization code */
   authcode: string;
 };
+

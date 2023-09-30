@@ -15,11 +15,10 @@ import {
     PaymentCardSwipeResponse,
 } from "./types";
 
-const cardManualCardInputResource = "payment/sale/manual";
-const cardManualDiscountSource = "payment/sale/cashdiscount";
+const cardManualCardSaleResource = "payment/sale/manual";
+const cardManualCardAuthResource = "payment/sale/authorize";
 const cardManualTokenResource = "payment/sale/token";
 const cardSwipeResource = "payment/card/swipe";
-
 
 export class Payments extends Base {
 
@@ -32,26 +31,18 @@ export class Payments extends Base {
     processManualCardSale(card: PaymentCardManualInputParams): Promise<PaymentCardManualInputResponse> {
         const { card_detail, billing, customer, discount, ...rest } = card;
 
-        if (!validateCreditCardNumber(card_detail?.number)) {
-            throw new Error('Invalid credit card number');
-        }
-        if (!validateCreditCardExpiration(card_detail?.exp_month, card_detail?.exp_year)) {
-            throw new Error('Invalid credit card expiration date');
-        }
+        if (!validateCreditCardNumber(card_detail?.number)) throw new Error('Invalid credit card number');
+        if (!validateCreditCardExpiration(card_detail?.exp_month, card_detail?.exp_year)) throw new Error('Invalid credit card expiration date');
         const brand = getCardBrand(card_detail?.number);
-        if (!brand) {
-            throw new Error('Invalid credit card brand');
-        }
-        if ((brand === 'American Express' && card_detail?.cvv.toString().length !== 4) ||
-            (card_detail?.cvv.toString().length !== 3)) {
-            throw new Error('Invalid card validation number (cvv)');
-        }
+        if (!brand) throw new Error('Invalid credit card brand');
+        if ((brand === 'American Express' && card_detail?.cvv.toString().length !== 4) || (card_detail?.cvv.toString().length !== 3)) throw new Error('Invalid card validation number (cvv)');
+        
+        if (card.send_receipt && !customer?.email) throw new Error('You must provide a customer email address to send a payment receipt')
+        
+        if (!card.type) throw new Error('You must provide a processing type.  Accepted values are "sale" and "authorize"');
+        if (card.type.toUpperCase() !== 'SALE' && card.type.toUpperCase() !== 'AUTHORIZE') throw new Error("Invalid processing type.  Accepted 'type' values are 'sale' and 'authorize'");
 
-        if (card.send_receipt && !customer?.email) {
-            throw new Error('You must provide a customer email address to send a payment receipt')
-        }
-
-        const resource = discount?.amount || discount?.percent ? cardManualDiscountSource : cardManualCardInputResource
+        const resource = card.type.toUpperCase() === 'SALE' ? cardManualCardSaleResource : cardManualCardAuthResource
 
         return this.request(`/${resource}`, {
             method: 'POST',
@@ -91,11 +82,20 @@ export class Payments extends Base {
         });
     }
 
+    /**
+     * Processes a manual card token sale.
+     *
+     * @param {PaymentCardTokenInputParams} card - The payment card token input parameters.
+     * @return {Promise<PaymentCardTokenResponse>} - A promise that resolves to the payment card token response.
+     */
     processManualCardTokenSale(card: PaymentCardTokenInputParams): Promise<PaymentCardTokenResponse> {
 
-        const resource = card.discount?.amount || card.discount?.percent ? cardManualDiscountSource : cardManualCardInputResource
+        if (!card.type) throw new Error('You must provide a processing type.  Accepted values are "sale" and "authorize"');
+        if (card.type.toUpperCase() !== 'SALE' && card.type.toUpperCase() !== 'AUTHORIZE') throw new Error("Invalid processing type.  Accepted 'type' values are 'sale' and 'authorize'");
 
-        return this.request(`/${cardManualTokenResource}`, {
+        const resource = card.type.toUpperCase() === 'SALE' ? cardManualTokenResource : cardManualCardAuthResource
+
+        return this.request(`/${resource}`, {
             method: 'POST',
             body: JSON.stringify({
                 transaction_data: {
@@ -121,10 +121,21 @@ export class Payments extends Base {
         });
     }
 
+    /**
+     * Processes a card track sale.
+     *
+     * @param {PaymentCardSwipeInputParams} card - the payment card swipe input parameters
+     * @return {Promise<PaymentCardSwipeResponse>} - a promise that resolves to the payment card swipe response
+     */
     processCardTrackSale(card: PaymentCardSwipeInputParams): Promise<PaymentCardSwipeResponse> {
         const { track_data, customer, discount, ...rest } = card;
 
-        return this.request(`/${cardSwipeResource}`, {
+        if (!card.type) throw new Error('You must provide a processing type.  Accepted values are "sale" and "authorize"');
+        if (card.type.toUpperCase() !== 'SALE' && card.type.toUpperCase() !== 'AUTHORIZE') throw new Error("Invalid processing type.  Accepted 'type' values are 'sale' and 'authorize'");
+
+        const resource = card.type.toUpperCase() === 'SALE' ? cardSwipeResource : cardManualCardAuthResource
+
+        return this.request(`/${resource}`, {
             method: 'POST',
             body: JSON.stringify({
                 transaction_data: {
@@ -152,6 +163,4 @@ export class Payments extends Base {
             }),
         });
     }
-
-
 }

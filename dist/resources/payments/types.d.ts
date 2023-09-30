@@ -29,6 +29,7 @@ export declare type PaymentCardBillingAddressObject = {
     country_code?: string;
 };
 export declare type PaymentCardManualInputParams = {
+    type: "string";
     mid: string;
     amount: string;
     order_id: string;
@@ -59,6 +60,7 @@ export declare type PaymentCardManualInputResponse = {
     token: string;
 };
 export declare type PaymentCardTokenInputParams = {
+    type: "string";
     mid: string;
     amount: string;
     token: string;
@@ -86,6 +88,7 @@ export declare type PaymentCardTokenResponse = {
     authcode: string;
 };
 export declare type PaymentCardSwipeInputParams = {
+    type: "string";
     mid: string;
     amount: string;
     track_data: PaymentCardTrackDetailObject;
