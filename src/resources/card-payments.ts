@@ -4,11 +4,11 @@ import {
     getIPAddress,
     validateCard,
 
-} from "../utils";
+} from "./utils";
 import {
     PaymentCardRequest,   
     PaymentCardResponse,
-} from "../../types/payments";
+} from "../types/payments";
 
 const cardManualCardSaleResource = "payment/sale/manual";
 const cardManualCardAuthResource = "payment/sale/authorize";

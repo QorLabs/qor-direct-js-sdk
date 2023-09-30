@@ -8,7 +8,7 @@ import {
     ProofOfDeliveryUpdateResponse,
     ProofOfDeliveryDeleteResponse
 
-} from "../../types/proof-of-delivery";
+} from "../types/proof-of-delivery";
 
 const podResource = "payment/transaction/proof_of_delivery";
 

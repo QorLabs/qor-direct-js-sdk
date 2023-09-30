@@ -5,7 +5,7 @@ import {
     PaymentTransactionQueryParams,
     AchTransactionQueryParams,
     AchTransactionQueryResponse
-} from "../../types/transactions";
+} from "../types/transactions";
 
 const paymentList = "/payment/transactions";
 const paymentFetch = "/payment/transaction";

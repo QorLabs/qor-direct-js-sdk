@@ -2,13 +2,8 @@
     "$schema": "https://typedoc.org/schema.json",
     "entryPoints": [
         "./src/index.ts", 
-        // "./src/resources/base.ts", 
-        "./src/resources/payments/index.ts",
-        "./src/resources/transactions/index.ts",
-        "./src/resources/marketplace/index.ts",
-        "./src/resources/proof-of-delivery/index.ts",
+        "./src/resources/*.ts",
         "./src/types/*.ts",
-        "./src/resources/utils.ts"
     ],
     "out": "../docs/js-sdk"
 }

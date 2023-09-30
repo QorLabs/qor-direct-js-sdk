@@ -1,5 +1,5 @@
 import "isomorphic-unfetch";
-import { genRandomString } from "./utils";
+import { genRandomString } from "./resources/utils";
 
 type Config = {
   apiKey: string;

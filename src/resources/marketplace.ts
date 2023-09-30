@@ -3,7 +3,7 @@ import {
     MarketplaceTransactionResponse,
     MarketplaceMerchantResponse,
     MarketplaceMerchantParameters
-} from "../../types/marketplace";
+} from "../types/marketplace";
 
 const mktrxresource = "payment/transactions/mp/batch";
 const mktNewMerchant = "channels/new_marketplace_merchant"
