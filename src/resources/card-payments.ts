@@ -89,7 +89,7 @@ export class CardPayments extends Base {
       await validateCard(card_detail).catch((e) => {
         throw new Error(e);
       });
-    if (card_detail?.store_card && !customer_detail?.email)
+    if (card_detail?.store_token && !customer_detail?.email)
       throw new Error(
         "You must provide a 'customer_detail.email' address to store a card token"
       );
@@ -155,6 +155,10 @@ export class CardPayments extends Base {
       trackdata: track_detail.track,
       ksnTrack: track_detail.ksn,
 
+      // discount
+      cash_discount_amount: discount_detail?.amount,
+      cash_discount_percentage: discount_detail?.percent,
+
       // Items
       line_items: items_detail,
 
@@ -165,8 +169,8 @@ export class CardPayments extends Base {
       XID: three_ds.XID,
 
       // store card
-      store_card: card_detail?.store_card === true ? 1 : 0,
-      nickname: card_detail?.nickname,
+      store_card: card_detail?.store_token === true ? 1 : 0,
+      nickname: card_detail?.token_nickname,
 
       // customer
       cfirstname: customer_detail?.first_name,

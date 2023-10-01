@@ -5,7 +5,6 @@ import {
   PaymentCustomerObject
 } from "./shared-payment.types"
 
-
 /** Payment credit card detail object. */
 export declare type PaymentCardObject = {
   /** Credit card number */
@@ -31,9 +30,9 @@ export declare type PaymentCardObject = {
   /** Card billing address ISO-3166-2 character country code */
   country_code?: string;
   /** Set to `true` to save credit card in secure storage and return a card token value.  Default is `false`.  **NOTE** If set to `true` a `customer.email` value is required */
-  store_card?: boolean;
-  /** Stored card nickname.  Required if **store_card** is set to `true` */
-  nickname: string;
+  store_token?: boolean;
+  /** Stored card nickname.  Required if **store_token** is set to `true` */
+  token_nickname: string;
 };
 /** Payment credit card track object. */
 export declare type PaymentCardTrackObject = {
@@ -49,7 +48,6 @@ export declare type PaymentCardTokenObject = {
   /** Credit card validation number (CVV)  */
   cvv: number;
 };
-/** Payment credit card discount object. */
 
 /** Payment credit card 3-D Secure object. */
 export declare type PaymentCard3dsObject = {
@@ -66,7 +64,6 @@ export declare type PaymentCard3dsObject = {
   /** 3-D Secure transaction ID */
   XID: string;
 };
-
 
 /**  Parameters to process a credit card sale or authorization. */
 export declare type PaymentCardRequest = {

@@ -11,8 +11,8 @@ export declare type PaymentCardObject = {
     city?: string;
     state_code?: string;
     country_code?: string;
-    store_card?: boolean;
-    nickname: string;
+    store_token?: boolean;
+    token_nickname: string;
 };
 export declare type PaymentCardTrackObject = {
     track: string;

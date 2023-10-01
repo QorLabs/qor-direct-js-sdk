@@ -59,7 +59,7 @@ export async function validateCard(card_detail: PaymentCardObject) {
     return new Error("Invalid 'card_detail.cvv' value");
   }
 
-  if (card_detail.store_card && !card_detail.nickname) {
+  if (card_detail.store_token && !card_detail.token_nickname) {
     throw new Error("You must provide 'card_detail.nickname' to store a card token");
   }
 

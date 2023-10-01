@@ -18,9 +18,16 @@ export declare type PaymentDiscountObject = {
     percent: number;
 };
 export declare type PaymentCustomerObject = {
+    customer_id: string;
     first_name?: string;
     last_name?: string;
     email?: string;
     phone?: string;
     website?: string;
+    address_street_1?: string;
+    address_street_2?: string;
+    address_city?: string;
+    address_state_code?: string;
+    address_postal_code?: string;
+    address_country?: string;
 };
