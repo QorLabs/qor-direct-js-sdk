@@ -1,9 +1,13 @@
 import { Transactions } from './resources/transactions';
 import { Marketplace } from './resources/marketplace';
 import { ProofOfDelivery } from './resources/proof-of-delivery';
-import { Payments } from './resources/card-payments';
+import { CardPayments } from './resources/card-payments';
+import { AchPayments } from './resources/ach-payments';
+import { CashPayments } from './resources/cash-payments';
 export declare class QorDirectSDK {
-    payments: Payments;
+    cardPayments: CardPayments;
+    achPayments: AchPayments;
+    cashPayments: CashPayments;
     transactions: Transactions;
     marketplace: Marketplace;
     proofOfDelivery: ProofOfDelivery;

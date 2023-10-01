@@ -9,19 +9,19 @@ import {
   PaymentCardRefundResponse,
   PaymentCardAuthorizeCapture,
   PaymentCardAuthorizeCaptureResponse,
-} from "../types/card-payments";
+} from "../types/card-payments.types";
 
 const cardManualCardSaleResource = "payment/sale/manual";
 const cardManualCardAuthResource = "payment/sale/authorize";
 
-export class Payments extends Base {
+export class CardPayments extends Base {
   /**
    * Process a credit card payment.
    *
    * @param {PaymentCardRequest} card - Process a credit card payment.
    * @return {Promise<PaymentCardResponse>} A promise that resolves to the credit card payment response.
    */
-  async processCreditCard(
+  async processCreditCardPayment(
     card: PaymentCardRequest
   ): Promise<PaymentCardResponse> {
     const {
@@ -220,7 +220,7 @@ export class Payments extends Base {
    * @param {PaymentCardAuthorizeCapture} card - The card information for the original card authorization and capture amount.
    * @return {Promise<PaymentCardAuthorizeCaptureResponse>} A promise that resolves to the response of the card authorization capture.
    */
-  async processCardAuthorizeCapture(
+  async processCreditCardCapture(
     card: PaymentCardAuthorizeCapture
   ): Promise<PaymentCardAuthorizeCaptureResponse> {
     return this.request(`/payment/capture`, {

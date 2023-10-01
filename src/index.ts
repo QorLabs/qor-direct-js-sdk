@@ -1,11 +1,15 @@
 import { Transactions } from './resources/transactions';
 import { Marketplace } from './resources/marketplace';
 import { ProofOfDelivery } from './resources/proof-of-delivery';
-import { Payments } from './resources/card-payments';
+import { CardPayments } from './resources/card-payments';
+import { AchPayments } from './resources/ach-payments';
+import { CashPayments } from './resources/cash-payments';
 
 
 export class QorDirectSDK {
-    payments: Payments
+    cardPayments: CardPayments
+    achPayments: AchPayments
+    cashPayments: CashPayments
     transactions: Transactions
     marketplace: Marketplace
     proofOfDelivery: ProofOfDelivery
@@ -41,7 +45,9 @@ export class QorDirectSDK {
       /** The base URL to use when ready for production.  Defaults to sandbox 'https://api-sandbox.qorcommerce.io/v3'. */
       baseUrl?: string
     }) {
-        this.payments = new Payments(config);
+        this.cardPayments = new CardPayments(config);
+        this.achPayments = new AchPayments(config);
+        this.cashPayments = new CashPayments(config);
         this.transactions = new Transactions(config);
         this.marketplace = new Marketplace(config);
         this.proofOfDelivery = new ProofOfDelivery(config);

@@ -1,5 +1,5 @@
 import { Base } from "../base";
-import { PaymentTransactionFetchResponse, PaymentTransactionListResponse, PaymentTransactionQueryParams, AchTransactionQueryParams, AchTransactionQueryResponse } from "../types/transactions";
+import { PaymentTransactionFetchResponse, PaymentTransactionListResponse, PaymentTransactionQueryParams, AchTransactionQueryParams, AchTransactionQueryResponse } from "../types/transactions.types";
 export declare class Transactions extends Base {
     fetchPaymentTransactionById(trxn_id: string): Promise<PaymentTransactionFetchResponse>;
     listPaymentTransactions(queryParams?: PaymentTransactionQueryParams): Promise<PaymentTransactionListResponse>;
