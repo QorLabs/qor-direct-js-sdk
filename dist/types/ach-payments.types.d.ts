@@ -23,6 +23,7 @@ export declare type PaymentAchRequest = {
     token: string;
     ach_detail: PaymentAchObject;
     customer_detail: PaymentCustomerObject;
+    ip_address?: string;
     memo?: string;
     meta_data?: object;
     send_receipt?: boolean;

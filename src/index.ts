@@ -4,12 +4,14 @@ import { ProofOfDelivery } from './resources/proof-of-delivery';
 import { CardPayments } from './resources/card-payments';
 import { AchPayments } from './resources/ach-payments';
 import { CashPayments } from './resources/cash-payments';
+import { GiftCards } from './resources/gift-cards';
 
 
 export class QorDirectSDK {
     cardPayments: CardPayments
     achPayments: AchPayments
     cashPayments: CashPayments
+    giftCards: GiftCards
     transactions: Transactions
     marketplace: Marketplace
     proofOfDelivery: ProofOfDelivery
@@ -48,6 +50,7 @@ export class QorDirectSDK {
         this.cardPayments = new CardPayments(config);
         this.achPayments = new AchPayments(config);
         this.cashPayments = new CashPayments(config);
+        this.giftCards = new GiftCards(config);
         this.transactions = new Transactions(config);
         this.marketplace = new Marketplace(config);
         this.proofOfDelivery = new ProofOfDelivery(config);

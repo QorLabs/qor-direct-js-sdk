@@ -1,4 +1,6 @@
 import { Base } from "../base";
+import { genRandomString, getIPAddress } from "./utils";
+
 import {
     PaymentAchRequest,
     PaymentAchResponse,
@@ -73,7 +75,7 @@ export class AchPayments extends Base {
             type: req.type,
             mid: req.mid,
             amount: req.total_amount,
-            orderid: req.order_id,
+            orderid: req.order_id || genRandomString(12),
             checknumber: ach_detail?.check_number,
             checkdate: ach_detail?.check_date,
             transactiondate: ach_detail?.process_date,
@@ -94,6 +96,7 @@ export class AchPayments extends Base {
             ccity: customer_detail?.address_city,
             cstate: customer_detail?.address_state_code,
             czip: customer_detail?.address_postal_code,
+            ipaddress: req.ip_address || getIPAddress(),
             memo: req.memo,
             store_accnt: ach_detail?.store_token ? 1 : 0,
             account_nickname: ach_detail?.store_token ? ach_detail?.token_nickname : "",
