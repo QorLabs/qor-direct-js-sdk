@@ -117,6 +117,7 @@ export declare type PaymentAchRefund = {
   /** A reference id that will be echo'd back in the message response. */
   reference_id?: string;
 };
+
 /** Response object for an ACH/Bank account refund transaction */
 export declare type PaymentAchRefundResponse = {
   /** The status of the transaction. Possible response values are 'approved', 'declined' and 'error'. */

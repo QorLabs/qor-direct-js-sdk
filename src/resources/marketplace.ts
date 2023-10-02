@@ -16,8 +16,8 @@ export class Marketplace extends Base {
      * @param {string} batch_id - The batch ID of the transaction.
      * @return {Promise<MarketplaceTransactionResponse>} A promise that resolves to the transaction.
      */
-    fetchMarketplaceTransactionByBatchId(batch_id: string): Promise<MarketplaceTransactionResponse> {
-        return this.request(`${mktrxresource}/${batch_id}`);
+    async fetchMarketplaceTransactionByBatchId(batch_id: string): Promise<MarketplaceTransactionResponse> {
+        return await this.request(`${mktrxresource}/${batch_id}`);
     }
 
     /**
@@ -26,8 +26,8 @@ export class Marketplace extends Base {
      * @param {MarketplaceMerchantParameters} merchant - The merchant object containing the details of the merchant.
      * @return {Promise<MarketplaceMerchantResponse>} - A promise that resolves to the response of the API call.
      */
-    createMarketplaceMerchantAccount(merchant: MarketplaceMerchantParameters): Promise<MarketplaceMerchantResponse> {
-        return this.request(`/${mktNewMerchant}`, {
+    async createMarketplaceMerchantAccount(merchant: MarketplaceMerchantParameters): Promise<MarketplaceMerchantResponse> {
+        return await this.request(`/${mktNewMerchant}`, {
             method: 'POST',
             body: JSON.stringify({data: merchant}),
           });

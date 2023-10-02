@@ -1,6 +1,6 @@
 {
   "name": "qor-direct-sdk",
-  "version": "3.0.42",
+  "version": "3.0.5",
   "description": "Javascript SDK for Qorcommerce.io payment gateway.  See https://docs.qorcommerce.io/ for more information.",
   "main": "dist/index.js",
   "module": "dist/index.m.js",

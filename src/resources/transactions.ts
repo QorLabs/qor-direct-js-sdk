@@ -50,8 +50,8 @@ export class Transactions extends Base {
      *
      * @return {Promise<PaymentTransactionListResponse>} A promise that resolves to an array of transaction objects.
      */
-    listPaymentTransactions(queryParams?: PaymentTransactionQueryParams): Promise<PaymentTransactionListResponse> {
-        return this.request<PaymentTransactionListResponse>(`${paymentList}`, queryParams);
+    async listPaymentTransactions(queryParams?: PaymentTransactionQueryParams): Promise<PaymentTransactionListResponse> {
+        return await this.request<PaymentTransactionListResponse>(`${paymentList}`, queryParams);
     }
 
     /**
@@ -60,8 +60,8 @@ export class Transactions extends Base {
      * @param {string} profile_id - The ID of the profile.
      * @return {Promise<PaymentTransactionListResponse>} A promise that resolves to the payment transaction list response.
      */
-    listPaymentTransactionsByProfileId(profile_id: string): Promise<PaymentTransactionListResponse> {
-        return this.request(`${paymentProfileList}/${profile_id}`);
+    async listPaymentTransactionsByProfileId(profile_id: string): Promise<PaymentTransactionListResponse> {
+        return await this.request(`${paymentProfileList}/${profile_id}`);
     }
 
     /**
@@ -70,8 +70,8 @@ export class Transactions extends Base {
      * @param {string} batch_id - The ID of the batch to retrieve payment transactions for.
      * @return {Promise<PaymentTransactionListResponse>} - A promise that resolves to a response object containing the list of payment transactions.
      */
-    listPaymentTransactionsByBatchId(batch_id: string): Promise<PaymentTransactionListResponse> {
-        return this.request(`${paymentBatchList}/${batch_id}`);
+    async listPaymentTransactionsByBatchId(batch_id: string): Promise<PaymentTransactionListResponse> {
+        return await this.request(`${paymentBatchList}/${batch_id}`);
     }
 
     /**
@@ -80,8 +80,8 @@ export class Transactions extends Base {
      * @param {string} transaction_id - The ID of the transaction to fetch.
      * @return {Promise<AchTransactionQueryResponse>} - A promise that resolves to the query response of the ACH transaction.
      */
-    fetchAchTransactionById(transaction_id: string): Promise<AchTransactionQueryResponse> {
-        return this.request(`${achResource}/${transaction_id}`);
+    async fetchAchTransactionById(transaction_id: string): Promise<AchTransactionQueryResponse> {
+        return await this.request(`${achResource}/${transaction_id}`);
     }
 
     /**
@@ -90,7 +90,7 @@ export class Transactions extends Base {
      * @param {AchTransactionQueryParams} [queryParams] - Optional query parameters to filter the list of transactions.
      * @return {Promise<AchTransactionQueryResponse[]>} - A promise that resolves to an array of ACH transaction query responses.
      */
-    listAchTransactions(queryParams?: AchTransactionQueryParams): Promise<AchTransactionQueryResponse[]> {
-        return this.request<AchTransactionQueryResponse[]>(`${paymentList}`, queryParams);
+    async listAchTransactions(queryParams?: AchTransactionQueryParams): Promise<AchTransactionQueryResponse[]> {
+        return await this.request<AchTransactionQueryResponse[]>(`${paymentList}`, queryParams);
     }
 }

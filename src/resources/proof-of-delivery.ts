@@ -20,8 +20,8 @@ export class ProofOfDelivery extends Base {
      * @param {ProofOfDeliveryQueryParams} [queryParams] - The query parameters for the proof of delivery request.
      * @return {Promise<ProofOfDeliveryListResponse>} A promise that resolves to the response containing a list of proof of delivery transactions.
      */
-    listProofOfDelivery(queryParams?: ProofOfDeliveryQueryParams): Promise<ProofOfDeliveryListResponse> {
-        return this.request<ProofOfDeliveryListResponse>(`${podResource}`, queryParams);
+    async listProofOfDelivery(queryParams?: ProofOfDeliveryQueryParams): Promise<ProofOfDeliveryListResponse> {
+        return await this.request<ProofOfDeliveryListResponse>(`${podResource}`, queryParams);
     }
 
     /**
@@ -30,8 +30,8 @@ export class ProofOfDelivery extends Base {
      * @param {string} id - The ID of the proof of delivery to fetch.  Starts with `pofs-`.
      * @return {Promise<ProofOfDeliveryListResponse>} - A promise that resolves to proof of delivery fetched by id.
      */
-    fetchProofOfDeliveryById(id: string): Promise<ProofOfDeliveryListResponse> {
-        return this.request(`${podResource}/${id}`);
+    async fetchProofOfDeliveryById(id: string): Promise<ProofOfDeliveryListResponse> {
+        return await this.request(`${podResource}/${id}`);
     }
 
     /**
@@ -40,8 +40,8 @@ export class ProofOfDelivery extends Base {
      * @param {ProofOfDeliveryCreateParams} pofs - The parameters for creating the proof of delivery.
      * @return {Promise<ProofOfDeliveryCreateResponse>} - A promise that resolves with the response of the proof of delivery creation.
      */
-    createProofOfDelivery(pofs: ProofOfDeliveryCreateParams): Promise<ProofOfDeliveryCreateResponse> {
-        return this.request(`/${podResource}`, {
+    async createProofOfDelivery(pofs: ProofOfDeliveryCreateParams): Promise<ProofOfDeliveryCreateResponse> {
+        return await this.request(`/${podResource}`, {
             method: 'POST',
             body: JSON.stringify(pofs),
           });
@@ -53,8 +53,8 @@ export class ProofOfDelivery extends Base {
      * @param {ProofOfDeliveryUpdateParams} pofs - The proof of delivery update parameters.
      * @return {Promise<ProofOfDeliveryUpdateResponse>} - A promise that resolves with the proof of delivery update response.
      */
-    patchProofOfDelivery(pofs: ProofOfDeliveryUpdateParams): Promise<ProofOfDeliveryUpdateResponse> {
-        return this.request(`/${podResource}`, {
+    async patchProofOfDelivery(pofs: ProofOfDeliveryUpdateParams): Promise<ProofOfDeliveryUpdateResponse> {
+        return await this.request(`/${podResource}`, {
             method: 'PATCH',
             body: JSON.stringify(pofs),
         });
@@ -66,8 +66,8 @@ export class ProofOfDelivery extends Base {
      * @param {string} id - The ID of the proof of delivery to delete.
      * @return {Promise<ProofOfDeliveryDeleteResponse>} A Promise that resolves to the delete response.
      */
-    deleteProofOfDelivery(id: string): Promise<ProofOfDeliveryDeleteResponse> {
-        return this.request(`/${podResource}/${id}`, {
+    async deleteProofOfDelivery(id: string): Promise<ProofOfDeliveryDeleteResponse> {
+        return await this.request(`/${podResource}/${id}`, {
             method: 'DELETE',
         });
     }

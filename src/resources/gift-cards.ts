@@ -26,7 +26,7 @@ export class GiftCards extends Base {
   async processGiftCardBalance(
     req: GiftCardBalance
   ): Promise<GiftCardBalanceResponse> {
-    return this.request(`/gift/balance`, {
+    return await this.request(`/gift/balance`, {
       method: "POST",
       body: JSON.stringify({
         transaction_data: {
@@ -62,7 +62,7 @@ export class GiftCards extends Base {
       );
     }
 
-    return this.request(`/gift/sale`, {
+    return await this.request(`/gift/sale`, {
       method: "POST",
       body: JSON.stringify({
         transaction_data: {
@@ -85,7 +85,7 @@ export class GiftCards extends Base {
    * @return {Promise<GiftCardLoadResponse>} - A promise that resolves to the gift card load request.
    */
   async processGiftCardLoad(req: GiftCardLoad): Promise<GiftCardLoadResponse> {
-    return this.request(`/gift/load`, {
+    return await this.request(`/gift/load`, {
       method: "POST",
       body: JSON.stringify({
         transaction_data: {
@@ -107,7 +107,7 @@ export class GiftCards extends Base {
   async processGiftCardActivate(
     req: GiftCardActivate
   ): Promise<GiftCardActivateResponse> {
-    return this.request(`/gift/activate`, {
+    return await this.request(`/gift/activate`, {
       method: "POST",
       body: JSON.stringify({
         transaction_data: {
@@ -129,7 +129,7 @@ export class GiftCards extends Base {
   async processGiftCardDeactivate(
     req: GiftCardDeactivate
   ): Promise<GiftCardDeactivateResponse> {
-    return this.request(`/gift/deactivate`, {
+    return await this.request(`/gift/deactivate`, {
       method: "POST",
       body: JSON.stringify({
         transaction_data: {
@@ -150,7 +150,7 @@ export class GiftCards extends Base {
   async processGiftCardRefund(
     req: GiftCardRefund
   ): Promise<GiftCardRefundResponse> {
-    return this.request(`/gift/refund`, {
+    return await this.request(`/gift/refund`, {
       method: "POST",
       body: JSON.stringify({
         transaction_data: {

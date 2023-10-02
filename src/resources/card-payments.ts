@@ -94,6 +94,11 @@ export class CardPayments extends Base {
         "You must provide a 'customer_detail.email' address to store a card token"
       );
 
+    if (card_detail?.store_token && !card_detail?.token_nickname)
+      throw new Error(
+        "You must provide 'card_detail.nickname' to store a card token"
+      );
+
     // validate token_detail
     if (Object.keys(token_detail).length && !token_detail.token)
       throw new Error("You must provide a 'token_detail.token' value");
@@ -182,7 +187,7 @@ export class CardPayments extends Base {
       ...rest,
     };
 
-    return this.request(`/${resource}`, {
+    return await this.request(`/${resource}`, {
       method: "POST",
       body: JSON.stringify({ transaction_data: data }),
     });
@@ -197,7 +202,7 @@ export class CardPayments extends Base {
   async processCreditCardVoid(
     card: PaymentCardVoid
   ): Promise<PaymentCardVoidResponse> {
-    return this.request(`/payment/void`, {
+    return await this.request(`/payment/void`, {
       method: "POST",
       body: JSON.stringify({ transaction_data: card }),
     });
@@ -212,7 +217,7 @@ export class CardPayments extends Base {
   async processCreditCardRefund(
     card: PaymentCardRefund
   ): Promise<PaymentCardRefundResponse> {
-    return this.request(`/payment/refund`, {
+    return await this.request(`/payment/refund`, {
       method: "POST",
       body: JSON.stringify({ transaction_data: card }),
     });
@@ -227,7 +232,7 @@ export class CardPayments extends Base {
   async processCreditCardCapture(
     card: PaymentCardAuthorizeCapture
   ): Promise<PaymentCardAuthorizeCaptureResponse> {
-    return this.request(`/payment/capture`, {
+    return await this.request(`/payment/capture`, {
       method: "POST",
       body: JSON.stringify({ transaction_data: card }),
     });

@@ -10,7 +10,7 @@ export class CashPayments extends Base {
     async processCashPayment(
         req: PaymentCashRequest
       ): Promise<PaymentCashResponse> {
-        return this.request(`/payment/cash`, {
+        return await this.request(`/payment/cash`, {
           method: "POST",
           body: JSON.stringify({ 
             type: 'cash',
